@@ -9,19 +9,19 @@
         <button type="button" onclick="limpiarFormulario();" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form id="FormularioAgregarUsuario">
+        <form  action="../funcionalidad/AgregarUsuario.php" method="POST">
           <div class="row">
             <div class="col-5">
               <label for="recipient-name" class="col-form-label fw-semibold">Nombre:</label>
-              <input type="text" class="form-control" id="nombre" required minlength="4" maxlength="25">
+              <input type="text" class="form-control" name="nombre" required minlength="4" maxlength="25">
             </div>
             <div class="col-3">
               <label for="recipient-name" class="col-form-label fw-semibold" id="MensajeAyuda">Mesa:</label>
-              <input type="number" class="form-control" id="mesa" min="0" max="412" step="1" required>
+              <input type="number" class="form-control" name="mesa" min="0" max="412" step="1" required>
             </div>
             <div class="col-4">
               <label for="recipient-name" class="col-form-label fw-semibold">Tipo:</label>
-              <select class="form-select" id="tipo" required>
+              <select class="form-select" name="perfiltiempo" required>
                 <option selected>Elegir</option>
                 <option value="1d">1 Dia</option>
                 <option value="2d">2 Dias</option>
@@ -35,19 +35,19 @@
           <div class="row">
             <div class="col-3">
               <label for="recipient-name" class="col-form-label fw-semibold">Usuario:</label>
-              <input type="text" class="form-control" id="nombre" value="" required minlength="2" maxlength="8">
+              <input type="text" class="form-control" name="usuario" value="" required minlength="2" maxlength="8">
             </div>
             <div class="col-3">
               <label for="recipient-name" class="col-form-label fw-semibold">Contraseña:</label>
-              <input type="text" class="form-control" id="mesa" value="" required minlength="2" maxlength="8">
+              <input type="text" class="form-control" name="contra" value="" required minlength="2" maxlength="8">
             </div>
 
             <div class="col-6">
               <label for="recipient-name" class="col-form-label fw-semibold">Fecha Inicial y Fecha Final</label>
-              <div class="input-daterange input-group" id="DPAgregarUsuario" required>
-                <input type="text" class="input-sm form-control" name="start" />
+              <div class="input-daterange input-group" name="DPAgregarUsuario" required>
+                <input type="text" class="input-sm form-control" name="inicio" name="start" />
                 <span class="input-group-addon">to</span>
-                <input type="text" class="input-sm form-control" name="end" />
+                <input type="text" class="input-sm form-control" name="final" name="end" />
               </div>
             </div>
 
@@ -55,16 +55,17 @@
 
           <div class="mb-3">
             <label for="message-text" class="col-form-label">Nota:</label>
-            <textarea class="form-control" id="nota" required minlength="2" maxlength="50"></textarea>
+            <textarea class="form-control" name="nota" required minlength="2" maxlength="50"></textarea>
           </div>
-        </form>
+        
       </div>
       <div class="modal-footer">
         <button type="button" onclick="limpiarFormulario();" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#GenerarUsuarioAleatorio">Generar Usuario</button>
-        <button type="button" class="btn btn-success">Guardar Informacion</button>
+        <button type="submit" class="btn btn-success">Guardar Informacion</button>
 
       </div>
+      </form>
     </div>
   </div>
 </div>

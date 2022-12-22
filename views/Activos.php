@@ -70,35 +70,51 @@
                         <th>Opciones</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <!--PHP OBTENER DATOS DE TABLA EN LA BASE DE DATOS-------------------------------->
 
-                    <!--Finaliza codigo php sin cerrar llaves del while -->
-                    <!--Mostrar datos de la tabla con codigo php adentro para obtener cada consulta por separado-->
-                    <tr>
-                        <td>Prueba</td>
-                        <td>000</td>
-                        <td>ninguna</td>
-                        <td>ninguna</td>
-                        <td>abcd</td>
-                        <td>1234</td>
-                        <td>1 Semana</td>
-                        <td><img src="../images/comprobado.png" width="35" height="35"></td>
-                        <td>
-                            <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                                <button type="button" href="#" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#ModalEditarUsuario">Editar</button>
-                                <button type="button" href="#" class="btn btn-primary" onclick="AlertarPausarUsuario();">Pausar</button>
-                                <button type="button" href="#" class="btn btn-danger" onclick="AlertarEliminar();">Eliminar</button>
-                            </div>
-                        </td>
+                <?php
+                include('../DB/Conexion.php'); // Incluir conexion con base de datos
+                $sql = "SELECT * FROM usuarios_activos WHERE Fecha_Vencimiento > CURRENT_DATE"; //Obtener de la tabla usuariosdatos 
+                $resultados = mysqli_query($conexion, $sql); // retornar resultados de la conexion y ejecutar script
+                while ($mostrar = mysqli_fetch_array($resultados)) { // bucle que cada vez que encuentre una columna con datos
 
-                    </tr>
-                    <?php include('../modal/ModalEditarUsuario.php'); ?>
-                    <!--Mostrar datos de la tabla con codigo php adentro para obtener cada consulta por separado-->
+                    $id_relacion = $mostrar['Usuarios_Creados_id'];
+                    $obtener_datos_usuarios_creados = mysqli_query($conexion, "SELECT * FROM usuarios_creados WHERE id='$id_relacion'");
+                    $almacen_datos_usuarios_creados = mysqli_fetch_array($obtener_datos_usuarios_creados);
+                ?>
+                    <tbody>
+                        <!--PHP OBTENER DATOS DE TABLA EN LA BASE DE DATOS-------------------------------->
+
+                        <!--Finaliza codigo php sin cerrar llaves del while -->
+                        <!--Mostrar datos de la tabla con codigo php adentro para obtener cada consulta por separado-->
+                        <tr>
+                            <td style="visibility:collapse; display:none;"><?php echo $id_relacion ?></td> <!--Funcion style="visibility:collapse; display:none;" usada para esconder los datos de la columna esten alli pero no se muestren-->
+                            <td><?php echo $mostrar['Nombre_Cliente'] ?></td>
+                            <td><?php echo $mostrar['Mesa'] ?></td>
+                            <td><?php echo $mostrar['Fecha_Venta'] ?></td>
+                            <td><?php echo $mostrar['Fecha_Vencimiento'] ?></td>
+                            <td><?php echo $almacen_datos_usuarios_creados['Usuario'] ?></td>
+                            <td><?php echo $almacen_datos_usuarios_creados['Contraseña'] ?></td>
+                            <td><?php echo $almacen_datos_usuarios_creados['Tipo'] ?></td>
+                            <td><img src="../images/comprobado.png" width="35" height="35"></td>
+                            <td>
+                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                    <button type="button" href="#" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#ModalEditarUsuario">Editar</button>
+                                    <button type="button" href="#" class="btn btn-primary" onclick="AlertarPausarUsuario();">Pausar</button>
+                                    <button type="button" href="#" class="btn btn-danger" onclick="AlertarEliminar();">Eliminar</button>
+                                </div>
+                            </td>
+
+                        </tr>
+                        
+                        <?php include('../modal/ModalEditarUsuario.php'); ?>
+                        <!--Mostrar datos de la tabla con codigo php adentro para obtener cada consulta por separado-->
 
 
-                    <!--PHP OBTENER DATOS DE TABLA EN LA BASE DE DATOS-------------------------------->
-                </tbody>
+                        <!--PHP OBTENER DATOS DE TABLA EN LA BASE DE DATOS-------------------------------->
+                    </tbody>
+                <?php
+                }
+                ?>
                 <tfoot>
                     <th>Nombre</th>
                     <th>Mesa</th>
