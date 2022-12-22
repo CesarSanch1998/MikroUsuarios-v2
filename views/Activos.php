@@ -110,11 +110,10 @@
                         <!--Mostrar datos de la tabla con codigo php adentro para obtener cada consulta por separado-->
 
 
-                        <!--PHP OBTENER DATOS DE TABLA EN LA BASE DE DATOS-------------------------------->
-                    </tbody>
-                <?php
-                }
-                ?>
+                    <!--PHP OBTENER DATOS DE TABLA EN LA BASE DE DATOS-------------------------------->
+                    
+                </tbody>
+                <?php }?>
                 <tfoot>
                     <th>Nombre</th>
                     <th>Mesa</th>
