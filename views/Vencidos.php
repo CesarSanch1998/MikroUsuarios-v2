@@ -55,6 +55,7 @@
             <table id="TablaDatos" class="table table-striped display responsive nowrap" style="width:100%" data-page-length='50'>
                 <thead>
                     <tr>
+                        <th hidden>Id</th>
                         <th>Nombre</th>
                         <th>Mesa</th>
                         <th>F.Venta</th>
@@ -76,13 +77,14 @@
                     $obtener_datos_usuarios_creados = mysqli_query($conexion, "SELECT * FROM usuarios_creados WHERE id='$id_relacion'");
                     $almacen_datos_usuarios_creados = mysqli_fetch_array($obtener_datos_usuarios_creados);
                 ?>
-                <tbody>
-                    <!--PHP OBTENER DATOS DE TABLA EN LA BASE DE DATOS-------------------------------->
+                    <tbody>
+                        <!--PHP OBTENER DATOS DE TABLA EN LA BASE DE DATOS-------------------------------->
 
-                    <!--Finaliza codigo php sin cerrar llaves del while -->
-                    <!--Mostrar datos de la tabla con codigo php adentro para obtener cada consulta por separado-->
-                    <tr>
-                    <td style="visibility:collapse; display:none;"><?php echo $id_relacion ?></td> <!--Funcion style="visibility:collapse; display:none;" usada para esconder los datos de la columna esten alli pero no se muestren-->
+                        <!--Finaliza codigo php sin cerrar llaves del while -->
+                        <!--Mostrar datos de la tabla con codigo php adentro para obtener cada consulta por separado-->
+                        <tr>
+                            <td hidden><?php echo $id_relacion ?></td>
+                            <!--Funcion style="visibility:collapse; display:none;" usada para esconder los datos de la columna esten alli pero no se muestren-->
                             <td><?php echo $mostrar['Nombre_Cliente'] ?></td>
                             <td><?php echo $mostrar['Mesa'] ?></td>
                             <td><?php echo $mostrar['Fecha_Venta'] ?></td>
@@ -90,35 +92,36 @@
                             <td><?php echo $almacen_datos_usuarios_creados['Usuario'] ?></td>
                             <td><?php echo $almacen_datos_usuarios_creados['Contraseña'] ?></td>
                             <td><?php echo $almacen_datos_usuarios_creados['Tipo'] ?></td>
-                        <td><img src="../images/x.png" width="35" height="35"></td>
-                        <td>
-                            <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                                <button type="button" href="#" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#ModalRe-SuscribirUsuario">Re-Suscribir</button>
-                                <button type="button" href="#" class="btn btn-primary" onclick="AlertarPausarUsuario();">Pausar</button>
-                                <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Otras Op.
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item bg-danger p-2 text-dark bg-opacity-10" href="#">Otra Opcion</a></li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li><a class="dropdown-item bg-danger p-2 text-dark bg-opacity-10" href="#">Eliminar</a></li>
-                                </ul>
-                            </div>
-                        </td>
+                            <td><img src="../images/x.png" width="35" height="35"></td>
+                            <td>
+                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                    <button type="button" href="#" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#ModalRe-SuscribirUsuario<?php echo $mostrar['id'];?>">Re-Suscribir</button>
+                                    <button type="button" href="#" class="btn btn-primary" onclick="AlertarPausarUsuario();">Pausar</button>
+                                    <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Otras Op.
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item bg-danger p-2 text-dark bg-opacity-10" href="#">Otra Opcion</a></li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        <li><a class="dropdown-item bg-danger p-2 text-dark bg-opacity-10" href="#">Eliminar</a></li>
+                                    </ul>
+                                </div>
+                            </td>
 
-                    </tr>
-                    <?php include('../modal/ModalRe-SuscribirUsuario.php'); ?>
-                    <!--Mostrar datos de la tabla con codigo php adentro para obtener cada consulta por separado-->
+                        </tr>
+                        <?php include('../modal/ModalRe-SuscribirUsuario.php'); ?>
+                        <!--Mostrar datos de la tabla con codigo php adentro para obtener cada consulta por separado-->
 
 
-                    <!--PHP OBTENER DATOS DE TABLA EN LA BASE DE DATOS-------------------------------->
-                </tbody>
+                        <!--PHP OBTENER DATOS DE TABLA EN LA BASE DE DATOS-------------------------------->
+                    </tbody>
                 <?php
                 }
                 ?>
                 <tfoot>
+                    <th hidden>Id</th>
                     <th>Nombre</th>
                     <th>Mesa</th>
                     <th>F.Venta</th>

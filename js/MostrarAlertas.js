@@ -54,3 +54,12 @@ function AlertarPausarUsuario() {
         timer: 1500
       })
     }
+    function AlertaUsuarioReiniciadoMikrotik(){
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Usuario reiniciado en el MIKROTIK con exito!!',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    }

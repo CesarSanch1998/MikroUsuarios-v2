@@ -55,54 +55,67 @@
             <table id="TablaDatos" class="table table-striped display responsive nowrap" style="width:100%" data-page-length='50'>
                 <thead>
                     <tr>
+                        <th hidden>Id</th>
                         <th>Nombre</th>
                         <th>Mesa</th>
                         <th>Pagado</th>
                         <th>Pendi</th>
                         <th>F.Venta</th>
                         <th>F.Venci</th>
-                        <th>Usuario</th>
                         <th>AMK</th>
                         <th>Opciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <!--PHP OBTENER DATOS DE TABLA EN LA BASE DE DATOS-------------------------------->
+                    <?php
+                    include('../DB/Conexion.php'); // Incluir conexion con base de datos
+                    $sql = "SELECT * FROM usuarios_deudores"; //Obtener de la tabla usuariosdatos 
+                    $resultados = mysqli_query($conexion, $sql); // retornar resultados de la conexion y ejecutar script
+                    while ($mostrar = mysqli_fetch_array($resultados)) { // bucle que cada vez que encuentre una columna con datos
 
-                    <!--Finaliza codigo php sin cerrar llaves del while -->
-                    <!--Mostrar datos de la tabla con codigo php adentro para obtener cada consulta por separado-->
-                    <tr>
-                        <td>Prueba</td>
-                        <td>000</td>
-                        <td>2$</td>
-                        <td>1$</td>
-                        <td>10-20-2022</td>
-                        <td>10-20-2022</td>
-                        <td>rmac</td>
-                        <td><img src="../images/x.png" width="35" height="35"></td>
-                        <td>
-                            <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                                <button type="button" href="#" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#ModalAbonarPago">Abonar Pago</button>
-                                <button type="button" href="#" class="btn btn-primary">Otra Opcion</button>
+                        $id_relacion = $mostrar['Usuarios_Creados_id'];
+                        $obtener_datos_usuarios_creados = mysqli_query($conexion, "SELECT * FROM usuarios_creados WHERE id='$id_relacion'");
+                        $almacen_datos_usuarios_creados = mysqli_fetch_array($obtener_datos_usuarios_creados);
+                    ?>
 
-                            </div>
-                        </td>
+                        <!--PHP OBTENER DATOS DE TABLA EN LA BASE DE DATOS-------------------------------->
 
-                    </tr>
-                    <?php include('../modal/ModalAbonarPago.php'); ?>
-                    <!--Mostrar datos de la tabla con codigo php adentro para obtener cada consulta por separado-->
+                        <!--Finaliza codigo php sin cerrar llaves del while -->
+                        <!--Mostrar datos de la tabla con codigo php adentro para obtener cada consulta por separado-->
+                        <tr>
+                            <td hidden><?php echo $id_relacion ?></td>
+                            <!--Funcion hidden usada para esconder los datos de la columna esten alli pero no se muestren-->
+                            <td><?php echo $mostrar['Nombre_Cliente'] ?></td>
+                            <td><?php echo $mostrar['Mesa'] ?></td>
+                            <td><?php echo $mostrar['Pagado'] ?></td>
+                            <td><?php echo $mostrar['Pendiente'] ?></td>
+                            <td><?php echo $mostrar['Fecha_Venta'] ?></td>
+                            <td><?php echo $mostrar['Fecha_Vencimiento'] ?></td>
+                            <td><img src="../images/x.png" width="35" height="35"></td>
+                            <td>
+                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                    <button type="button" href="#" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#ModalAbonarPago">Abonar Pago</button>
+                                    <button type="button" href="#" class="btn btn-primary">Otra Opcion</button>
+
+                                </div>
+                            </td>
+
+                        </tr>
+                        <?php include('../modal/ModalAbonarPago.php'); ?>
+                        <!--Mostrar datos de la tabla con codigo php adentro para obtener cada consulta por separado-->
 
 
-                    <!--PHP OBTENER DATOS DE TABLA EN LA BASE DE DATOS-------------------------------->
+                        <!--PHP OBTENER DATOS DE TABLA EN LA BASE DE DATOS-------------------------------->
+                    <?php } ?>
                 </tbody>
                 <tfoot>
+                    <th hidden>Id</th>
                     <th>Nombre</th>
                     <th>Mesa</th>
                     <th>Pagado</th>
                     <th>Pendi</th>
                     <th>F.Venta</th>
                     <th>F.Venci</th>
-                    <th>Usuario</th>
                     <th>AMK</th>
                     <th>Opciones</th>
                 </tfoot>

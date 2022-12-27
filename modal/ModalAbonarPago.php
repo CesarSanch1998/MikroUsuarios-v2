@@ -7,23 +7,24 @@
         <button type="button" onclick="limpiarFormulario();" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form id="FormularioAbonarPago">
+      
+        <form id="FormularioAbonarPago" action="../funcionalidad/AgregarPago.php" method="POST" >
           <div class="row">
             <div class="col">
             <label for="recipient-name" class="col-form-label fw-semibold">Cantidad:</label>
-              <input type="number" class="form-control" id="cantidaddinero" min="0" step="0.1" required>
+              <input type="number" class="form-control" id="CantidadDinero" min="0" step="0.1" required>
             </div>
             <div class="col">
               <p></p>
               <p></p>
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="pagodolares" require>
+                <input class="form-check-input" type="radio" name="PDolares" id="pagodolares" require>
                 <label class="form-check-label" for="flexRadioDefault1">
                   Dolares ($)
                 </label>
               </div>
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="pagobolivares" require>
+                <input class="form-check-input" type="radio" name="PBolivares" id="pagobolivares" require disabled>
                 <label class="form-check-label" for="flexRadioDefault2">
                   Bolivares (Bs)
                 </label>
@@ -31,13 +32,14 @@
             </div>
           </div>
 
-        </form>
+        
       </div>
       <div class="modal-footer">
-        <button class="btn btn-secondary" onclick="limpiarFormulario();" data-bs-target="#ModalAgregarUsuario" data-bs-toggle="modal">Regresar</button>
-        <button type="button" class="btn btn-success">Abonar Pago</button>
+      <button type="button" onclick="limpiarFormulario();" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="submit" class="btn btn-success">Abonar Pago</button>
 
       </div>
+      </form>
     </div>
   </div>
 </div>

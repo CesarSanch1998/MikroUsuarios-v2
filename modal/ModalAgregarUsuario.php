@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 ?>
 <div class="modal fade" id="ModalAgregarUsuario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -9,7 +9,7 @@
         <button type="button" onclick="limpiarFormulario();" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form  action="../funcionalidad/AgregarUsuario.php" method="POST">
+        <form id="FormularioAgregarUsuario" action="../funcionalidad/AgregarUsuario.php" method="POST">
           <div class="row">
             <div class="col-5">
               <label for="recipient-name" class="col-form-label fw-semibold">Nombre:</label>
@@ -23,9 +23,6 @@
               <label for="recipient-name" class="col-form-label fw-semibold">Tipo:</label>
               <select class="form-select" name="perfiltiempo" required>
                 <option selected>Elegir</option>
-                <option value="1d">1 Dia</option>
-                <option value="2d">2 Dias</option>
-                <option value="3d">3 Dias</option>
                 <option value="1s">1 Semana</option>
                 <option value="1m">1 Mes</option>
 
@@ -57,7 +54,7 @@
             <label for="message-text" class="col-form-label">Nota:</label>
             <textarea class="form-control" name="nota" required minlength="2" maxlength="50"></textarea>
           </div>
-        
+
       </div>
       <div class="modal-footer">
         <button type="button" onclick="limpiarFormulario();" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -113,7 +110,7 @@
           <div class="row">
             <label for="recipient-name" class="col-form-label fw-semibold">Perfil de Tiempo:</label>
             <select class="form-select" id="perfiltiempo" required>
-            <option selected>Elige el perfil..</option>
+              <option selected>Elige el perfil..</option>
               <!--Obtener Perfil de tiempo del mikrotik y mostralo en el select-->
 
               <?php include('../funcionalidad/PerfildeTiempoMikrotik.php');
@@ -139,9 +136,9 @@
     </div>
   </div>
 </div>
-<?php 
-              
-              ?>
+<?php
+
+?>
 <!--Modal de crear usuario nuevo aleatorio ------------------------------------------------------>
 
 
