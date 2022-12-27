@@ -19,12 +19,11 @@
             <div class="col-4">
               <label for="recipient-name" class="col-form-label fw-semibold">Tipo:</label>
               <select class="form-select" id="tipo" required disabled>
-                <option selected>Arreglando</option>
-                <option value="1d">1 Dia</option>
-                <option value="2d">2 Dias</option>
-                <option value="3d">3 Dias</option>
-                <option value="1s">1 Semana</option>
-                <option value="1m">1 Mes</option>
+              <option selected><?php if($almacen_datos_usuarios_creados['Tipo'] == "1s"){
+                  echo "1 semana";
+                }else{
+                  echo "1 mes";
+                }?></option>
 
               </select>
             </div>
@@ -32,11 +31,11 @@
           <div class="row">
             <div class="col-3">
               <label for="recipient-name" class="col-form-label fw-semibold">Usuario:</label>
-              <input type="text" class="form-control" id="nombre" value="<?php echo $almacen_datos_usuarios_creados['Usuario'] ?>" required minlength="2" maxlength="8">
+              <input type="text" class="form-control" id="nombre" value="<?php echo $almacen_datos_usuarios_creados['Usuario'] ?>" required minlength="2" maxlength="8" disabled>
             </div>
             <div class="col-3">
               <label for="recipient-name" class="col-form-label fw-semibold">Contraseña:</label>
-              <input type="text" class="form-control" id="mesa" value="<?php echo $almacen_datos_usuarios_creados['Contraseña'] ?>" required minlength="2" maxlength="8">
+              <input type="text" class="form-control" id="mesa" value="<?php echo $almacen_datos_usuarios_creados['Contraseña'] ?>" required minlength="2" maxlength="8" disabled>
             </div>
 
             <div class="col-6">
