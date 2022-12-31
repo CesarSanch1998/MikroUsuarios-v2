@@ -63,3 +63,12 @@ function AlertarPausarUsuario() {
         timer: 1500
       })
     }
+    function AlertaUsuarioNoReiniciadoMikrotik(){
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'Reiniciado Incorrecto',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    }

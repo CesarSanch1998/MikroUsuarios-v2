@@ -1,6 +1,6 @@
 <?php
-    include('../funcionalidad/ResourceMikrotik.php');
-    include('../funcionalidad/formatbytesbites.php');
+include('../funcionalidad/ResourceMikrotik.php');
+include('../funcionalidad/formatbytesbites.php');
 
 
 ?>
@@ -60,10 +60,10 @@
           <div class="card-body">
             <h4 class="card-title">Datos del Equipo</h4>
             <div class="row">
-              <h7>Memoria Ram Libre: <?php echo formatBytes($resource['free-memory'],2 ) ?></h7>
+              <h7 id="ram">Memoria Ram Libre: <?php echo formatBytes($resource['free-memory'], 2) ?></h7>
             </div>
             <div class="row">
-              <h7>Memoria HDD: <?php echo formatBytes($resource['free-hdd-space'],2) ?></h7>
+              <h7>Memoria HDD: <?php echo formatBytes($resource['free-hdd-space'], 2) ?></h7>
             </div>
             <div class="row">
               <h7>Nombre Mikrotik: <?php echo $resource['board-name']; ?></h7>
@@ -76,13 +76,13 @@
           <div class="card-body">
             <h4 class="card-title">Datos del Equipo</h4>
             <div class="row">
-              <h7>CPU: <?php echo $resource['cpu-load']; ?> %</h7>
+              <h7 id="CPU">CPU: <?php echo $resource['cpu-load']; ?> %</h7>
             </div>
             <div class="row">
-              <h7>Temperatura: <?php echo $temperatura[1]['value'];?> C</h7>
+              <h7 id="temperatura">Temperatura: <?php echo $temperatura[1]['value']; ?> C</h7>
             </div>
             <div class="row">
-              <h7>Tiempo Encendido: <?php echo $resource['uptime']; ?></h7>
+              <h7 id="tiempo">Tiempo Encendido: <?php echo $resource['uptime']; ?></h7>
             </div>
           </div>
         </div>
@@ -99,11 +99,11 @@
             </h5>
             <p class="card-text">
               <center>
-                <h2 class="text-white"><?php echo $getusers;?></h2>
+                <h2 class="text-white"><?php echo $getusers; ?></h2>
               </center>
             </p>
             <center>
-            <a href="./UsuariosCreadosMikrotik.php" class="card-link text-white">Ver Mas</a>
+              <a href="./UsuariosCreadosMikrotik.php" class="card-link text-white">Ver Mas</a>
             </center>
           </div>
         </div>
@@ -116,11 +116,11 @@
             </h5>
             <p class="card-text">
               <center>
-                <h2 class="text-white"><?php echo $getusersactive;?></h2>
+                <h2 class="text-white"><?php echo $getusersactive; ?></h2>
               </center>
             </p>
             <center>
-            <a href="./UsuariosActivosMikrotik.php" class="card-link text-white">Ver Mas</a>
+              <a href="./UsuariosActivosMikrotik.php" class="card-link text-white">Ver Mas</a>
             </center>
           </div>
         </div>
@@ -137,7 +137,7 @@
               </center>
             </p>
             <center>
-            <a href="./Vencidos.php" class="card-link text-white">Ver Mas</a>
+              <a href="./Vencidos.php" class="card-link text-white">Ver Mas</a>
             </center>
           </div>
         </div>
@@ -150,16 +150,16 @@
             </h5>
             <p class="card-text">
               <center>
-                <h2 class="text-white"><?php echo $Activosip_bindin?></h2>
+                <h2 class="text-white"><?php echo $Activosip_bindin ?></h2>
               </center>
             </p>
             <center>
-            <a href="#" class="card-link text-white">Ver Mas</a>
+              <a href="#" class="card-link text-white">Ver Mas</a>
             </center>
           </div>
         </div>
       </div>
-    
+
     </div>
 
     <!--/ Style variation -->
@@ -168,8 +168,28 @@
 
   <!--Scripts-------------------------------------------------------------------------->
   <script src="../js/bootstrap.js"></script>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 
+  <script>
+    $(document).ready(function() {
+      setInterval('actualizarrecursos()',2000);
+      
+      function actualizarrecursos() {
+        $.ajax({
+          url: '../funcionalidad/ResourceMikrotik.php',
+          type: 'GET',
+          success: function(respuesta) {
+            let formato = "";
+            let json = JSON.parse(respuesta);
+            $('#tiempo').val(json.TEncendido);
+          }
+        })
+      }
+
+
+    });
+  </script>
 
   <!--Scripts-------------------------------------------------------------------------->
 </body>

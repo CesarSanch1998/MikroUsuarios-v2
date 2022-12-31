@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -101,7 +102,7 @@
                                         Otras Op.
                                     </button>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item bg-danger p-2 text-dark bg-opacity-10" href="#">Otra Opcion</a></li>
+                                        <li><a class="dropdown-item bg-danger p-2 text-dark bg-opacity-10" href="#">Desconectar MK</a></li>
                                         <li>
                                             <hr class="dropdown-divider">
                                         </li>

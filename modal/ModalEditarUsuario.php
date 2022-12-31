@@ -44,7 +44,7 @@
               <label for="recipient-name" class="col-form-label fw-semibold">Fecha Inicial y Fecha Final</label>
               <div class="input-daterange input-group" id="DPEditarUsuario" required>
                 <input type="text" class="input-sm form-control" name="start" value="<?php echo $mostrar['Fecha_Venta'];?>"  />
-                <span class="input-group-addon">to</span>
+                <span class="input-group-addon">-</span>
                 <input type="text" class="input-sm form-control" name="end" value="<?php echo $mostrar['Fecha_Vencimiento'];?>" />
               </div>
             </div>

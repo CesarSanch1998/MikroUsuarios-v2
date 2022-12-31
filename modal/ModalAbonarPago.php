@@ -18,13 +18,13 @@
               <p></p>
               <p></p>
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="PDolares" id="pagodolares" require>
+                <input class="form-check-input" type="radio" name="PDolares" id="pagodolares" required>
                 <label class="form-check-label" for="flexRadioDefault1">
                   Dolares ($)
                 </label>
               </div>
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="PBolivares" id="pagobolivares" require disabled>
+                <input class="form-check-input" type="radio" name="PBolivares" id="pagobolivares" required disabled>
                 <label class="form-check-label" for="flexRadioDefault2">
                   Bolivares (Bs)
                 </label>
