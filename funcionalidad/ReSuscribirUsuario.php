@@ -7,7 +7,7 @@ $mesa = $_POST['mesa'];
 $fechainicio = $_POST['inicio'];
 $fechafinal = $_POST['final'];
 $nota= $_POST['nota'];
-$fechaActual = date('Y/m/d');
+
 
 
 $sql = "UPDATE usuarios_activos SET Nombre_Cliente='$nombre', Mesa='$mesa', Fecha_Venta='$fechainicio', Fecha_Vencimiento='$fechafinal', Nota='$nota' WHERE id='$id'";

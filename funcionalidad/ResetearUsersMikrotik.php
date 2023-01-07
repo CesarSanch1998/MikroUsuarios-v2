@@ -1,6 +1,5 @@
 <?php
 
-
     $usuario = $_POST['Usuario'];
     require('../routeros_api.class.php');
 
@@ -14,24 +13,17 @@
             "numbers" => $usuario,
         ));
 
-
         if (empty($ARRAY)) {
- 
             
              $json = json_encode($ARRAY);
              echo "ejecutado";
           
         } else {
 
-            
             echo "no ejecutado";
-            $json = json_encode($ARRAY);
-          
-            
+            $json = json_encode($ARRAY);  
             
         }
-
-      
 
         $API->disconnect();
     }

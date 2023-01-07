@@ -10,4 +10,3 @@ $conexion = mysqli_connect($server,$usuario,$contraseña,$db);
 
 
 ?>
-<!--Conexion base de datos-->
