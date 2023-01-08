@@ -18,7 +18,7 @@ while ($Datos_deudores = mysqli_fetch_array($consulta_deudores)) {
         'usu_creado_id' => $Datos_deudores['Usuarios_Creados_id'],
         'botonAbonar' => '<div class="btn-group" role="group" aria-label="Basic mixed styles example">
         <button type="button" name="editar" id="'.$Datos_deudores['id'].'" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#ModalAbonarPago">Abonar</button>
-        <button type="button" name="borrar" id="'.$Datos_deudores['id'].'" class="btn btn-danger">Borrar</button>
+        <button type="button" name="borrar" id="'.$Datos_deudores['id'].'" class="btn btn-danger" onclick="AlertarEliminar();">Borrar</button>
 
         </div>'
       );
