@@ -69,7 +69,7 @@
                 <tbody>
                     <?php
                     include('../DB/Conexion.php'); // Incluir conexion con base de datos
-                    $sql = "SELECT * FROM usuarios_deudores"; //Obtener de la tabla usuariosdatos 
+                    $sql = "SELECT * FROM usuarios_deudores WHERE Pendiente > 0"; //Obtener de la tabla usuariosdatos 
                     $resultados = mysqli_query($conexion, $sql); // retornar resultados de la conexion y ejecutar script
                     while ($mostrar = mysqli_fetch_array($resultados)) { // bucle que cada vez que encuentre una columna con datos
 
@@ -94,7 +94,7 @@
                             <td><img src="../images/x.png" width="35" height="35"></td>
                             <td>
                                 <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                                    <button type="button" href="#" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#ModalAbonarPago">Abonar Pago</button>
+                                    <button type="button" href="#" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#ModalAbonarPago<?php echo $mostrar['id'];?>">Abonar Pago</button>
                                     <button type="button" href="#" class="btn btn-primary">Otra Opcion</button>
 
                                 </div>

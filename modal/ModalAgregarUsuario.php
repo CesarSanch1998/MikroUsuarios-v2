@@ -32,19 +32,19 @@
           <div class="row">
             <div class="col-3">
               <label for="recipient-name" class="col-form-label fw-semibold">Usuario:</label>
-              <input type="text" class="form-control" name="usuario" value="" required minlength="2" maxlength="8">
+              <input type="text" class="form-control" name="usuario" value="" required minlength="2" maxlength="6">
             </div>
             <div class="col-3">
               <label for="recipient-name" class="col-form-label fw-semibold">Contraseña:</label>
-              <input type="text" class="form-control" name="contra" value="" required minlength="2" maxlength="8">
+              <input type="text" class="form-control" name="contra" value="" required minlength="2" maxlength="6">
             </div>
 
             <div class="col-6">
               <label for="recipient-name" class="col-form-label fw-semibold">Fecha Inicial y Fecha Final</label>
               <div class="input-daterange input-group" name="DPAgregarUsuario" required>
-                <input type="text" class="input-sm form-control" name="inicio" name="start" />
-                <span class="input-group-addon">to</span>
-                <input type="text" class="input-sm form-control" name="final" name="end" />
+                <input type="text" class="input-sm form-control" name="inicio" name="start" autocomplete="off"/>
+                <span class="input-group-addon">-</span>
+                <input type="text" class="input-sm form-control" name="final" name="end" autocomplete="off"/>
               </div>
             </div>
 
@@ -52,7 +52,7 @@
 
           <div class="mb-3">
             <label for="message-text" class="col-form-label">Nota:</label>
-            <textarea class="form-control" name="nota" required minlength="2" maxlength="50"></textarea>
+            <textarea class="form-control" name="nota" required minlength="0" maxlength="50"></textarea>
           </div>
 
       </div>
