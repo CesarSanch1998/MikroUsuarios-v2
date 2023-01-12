@@ -8,13 +8,13 @@
       </div>
       <div class="modal-body">
       
-        <form id="FormularioAbonarPago" action="../funcionalidad/AgregarPago.php" method="POST" >
+        <form id="FormularioAbonarPago" action="../funcionalidad/AgregarPago.php" method="POST">
           <div class="row">
             <div class="col">
-            <input type="number" class="form-control" name="id" value="<?php echo $mostrar['id'];?>" required hidden>
+            <input type="number" class="form-control" name="id" id="id" value="<?php echo $mostrar['id'];?>" required hidden>
 
             <label for="recipient-name" class="col-form-label fw-semibold">Cantidad:</label>
-              <input type="number" class="form-control" name="monto" min="0" step="0.1" required>
+              <input type="number" class="form-control" name="monto" id="monto" min="0" step="0.1" required>
             </div>
             <div class="col">
               <p></p>
@@ -38,7 +38,7 @@
       </div>
       <div class="modal-footer">
       <button type="button" onclick="limpiarFormulario();" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        <button type="submit" class="btn btn-success">Abonar Pago</button>
+        <button type="submit" id="AbonarPago" class="btn btn-success">Abonar Pago</button>
 
       </div>
       </form>

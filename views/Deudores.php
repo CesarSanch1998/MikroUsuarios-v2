@@ -71,7 +71,7 @@
                     include('../DB/Conexion.php'); // Incluir conexion con base de datos
                     $sql = "SELECT * FROM usuarios_deudores WHERE Pendiente > 0"; //Obtener de la tabla usuariosdatos 
                     $resultados = mysqli_query($conexion, $sql); // retornar resultados de la conexion y ejecutar script
-                    while ($mostrar = mysqli_fetch_array($resultados)) { // bucle que cada vez que encuentre una columna con datos
+                    while ($mostrar = mysqli_fetch_assoc($resultados)) { // bucle que cada vez que encuentre una columna con datos
 
                         $id_relacion = $mostrar['Usuarios_Creados_id'];
                         $obtener_datos_usuarios_creados = mysqli_query($conexion, "SELECT * FROM usuarios_creados WHERE id='$id_relacion'");
@@ -94,7 +94,7 @@
                             <td><img src="../images/x.png" width="35" height="35"></td>
                             <td>
                                 <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                                    <button type="button" href="#" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#ModalAbonarPago<?php echo $mostrar['id'];?>">Abonar Pago</button>
+                                    <button type="button" href="#" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#ModalAbonarPago<?php echo $mostrar['id']; ?>">Abonar Pago</button>
                                     <button type="button" href="#" class="btn btn-primary">Otra Opcion</button>
 
                                 </div>
@@ -145,7 +145,40 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../js/MostrarAlertas.js"></script>
     <!--SweetAlert----------------------------------->
+    <!--
+    <script>
+        $('#FormularioAbonarPago').bind('submit', function(e) {
+            var id_usu = $('#id').val();
+            const Datos = {
+                id: $('#id').val(),
+                monto: $('#monto').val(),
+            };
+            $.post('/funcionalidad/AgregarPago.php', Datos, function(respuesta) { // metodo post del query igualmente funcional que el anterior
+                console.log(respuesta);
+                if (respuesta == "ejecutado con exito") {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Guardado Todo Correctamente',
+                        showConfirmButton: false,
+                        timer: 1700
+                    })
+                } else if(respuesta=="monto superior"){
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'error',
+                        title: 'Monto superior a la deuda',
+                        showConfirmButton: false,
+                        timer: 2000
+                    })
+                }
+            });
 
+
+            e.preventDefault();
+           //$('#ModalAbonarPago'+id_usu).modal('hide');
+        });
+    </script> -->
     <!--Scripts-------------------------------------------------------------------------->
 </body>
 

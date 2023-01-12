@@ -95,18 +95,10 @@
                             <td><img src="../images/x.png" width="35" height="35"></td>
                             <td>
                                 <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                                    <button type="button" href="#" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#ModalRe-SuscribirUsuario<?php echo $mostrar['id'];?>">Re-Suscribir</button>
+                                    <button type="button" href="#" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#ModalRe-SuscribirUsuario<?php echo $mostrar['id']; ?>">Re-Suscribir</button>
                                     <button type="button" href="#" class="btn btn-primary" onclick="AlertarPausarUsuario();">Pausar</button>
-                                    <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Otras Op.
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item bg-danger p-2 text-dark bg-opacity-10" href="#">Otra Opcion</a></li>
-                                        <li>
-                                            <hr class="dropdown-divider">
-                                        </li>
-                                        <li><a class="dropdown-item bg-danger p-2 text-dark bg-opacity-10" href="#">Eliminar</a></li>
-                                    </ul>
+                                    <button type="button" href="#" class="btn bg-danger text-white" onclick="Eliminar(<?php echo $id_relacion; ?>,'<?php echo $mostrar['Nombre_Cliente']; ?>')">Eliminar</button>
+
                                 </div>
                             </td>
 
@@ -179,6 +171,47 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../js/MostrarAlertas.js"></script>
     <!--SweetAlert----------------------------------->
+    <script>
+        function Eliminar(id, nombre) {
+            Swal.fire({
+                title: '¿Desea eliminar a ' + nombre + ' ?',
+                text: "Al darle clik estaras eliminando el registro del usuario ",
+                icon: 'error',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, Eliminar!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                    const Datos = {
+                        id: id,
+                        Nombre: nombre,
+                    };
+                    $.post('/funcionalidad/EliminarUsuario.php', Datos, function(respuesta) { // metodo post del query igualmente funcional que el anterior
+                        console.log(respuesta);
+                        if (respuesta == "ejecutado") {
+                            Swal.fire(
+                                'Eliminado!',
+                                'El registro de ' + nombre + ' se elimino con exito.',
+                                'success'
+                            )
+                        }else{
+                            Swal.fire(
+                                'ERROR!',
+                                'El registro de ' + nombre + ' no se elimino.',
+                                'error'
+                            )
+                        }
+
+
+
+                    });
+
+                }
+            })
+        }
+    </script>
 
     <!--Scripts-------------------------------------------------------------------------->
 </body>
