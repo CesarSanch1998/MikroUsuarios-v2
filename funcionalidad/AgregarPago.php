@@ -1,32 +1,64 @@
 <?php
 include('../DB/Conexion.php');
 
-$id_usu_creados = $_POST['id_usu_creado'];
-$nombre = $_POST['nombre'];
-$mesa = $_POST['mesa'];
-$monto = $_POST['monto'];
+$id_tabla_deudores = $_POST['id_tabla_deudores'];
+// $nombre = $_POST['nombre'];
+// $mesa = $_POST['mesa'];
+$monto = $_POST['Monto'];
+$sql = "SELECT * FROM usuarios_deudores WHERE id = '$id_tabla_deudores'";
+
+$resultado = $conexion->prepare($sql);
+$resultado->execute();
+$datos = $resultado->fetch();
+
+$MontoPagadoActual = $datos['Pagado'];
+$MontoPendienteActual = $datos['Pendiente'];
+
+$MontoPagadoFinal = $MontoPagadoActual + $monto;
+$MontoPendienteFinal = $MontoPendienteActual - $monto;
+
+//Agrega el usuario resuscrito en la tabla de usuarios activos -----------------------------------
+$sql2 = "UPDATE usuarios_deudores SET Pagado = '$MontoPagadoFinal', Pendiente = '$MontoPendienteFinal' WHERE id  = '$id_tabla_deudores'";
+$ejecutar = $conexion->prepare($sql2);
 
 
 
-$sql_verificacion = "SELECT * FROM usuarios_deudores WHERE Usuarios_Creados_id='$id_usu_creados'";
-$verificacion_ejecucion = mysqli_query($conexion, $sql_verificacion);
-$almacenar_datos_verificacion = mysqli_fetch_array($verificacion_ejecucion);
-$dinero_pendiente = $almacenar_datos_verificacion['Pendiente'];
+// Excecute
+if ($ejecutar->execute()) {
+
+    $json[] = array(
+        'Resultado' => 'Ejecutado',
+    );
+
+    echo json_encode($json, JSON_UNESCAPED_UNICODE);
+    VerificarUsuarioConDeudas($id_tabla_deudores);
+    // var_dump($MontoPagadoFinal) ;
 
 
-if ($monto > $dinero_pendiente) {
+} else {
+    $json[] = array(
+        'Resultado' => 'Error',
+    );
 
-    //echo "monto superior";
-} else if ($monto <= $dinero_pendiente) {
-
-    $sql_insertar = "UPDATE usuarios_deudores SET  Pagado=Pagado +'$monto', Pendiente=Pendiente -'$monto' WHERE Usuarios_Creados_id='$id_usu_creados' ";
-    $insertar_ejecucion = mysqli_query($conexion, $sql_insertar);
-
-        echo "ejecutado";
-    
-
-   
+    echo json_encode($json, JSON_UNESCAPED_UNICODE);
+    // print_r($conexion->errorInfo());
 }
 
+function VerificarUsuarioConDeudas($id_tabla_deudores)
+{
+    include('../DB/Conexion.php');
+    $sql = "SELECT * FROM usuarios_deudores WHERE id = '$id_tabla_deudores'";
 
+    $resultado = $conexion->prepare($sql);
+    $resultado->execute();
+    $datos = $resultado->fetch();
+    
+    $VerificarPendientes = $datos['Pendiente'];
 
+    if ($VerificarPendientes <= 0) {
+
+        $sql2 = "DELETE FROM usuarios_deudores WHERE id = $id_tabla_deudores";
+        $resultado2 = $conexion->prepare($sql2);
+        $resultado2->execute();
+    }
+}

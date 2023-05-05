@@ -6,10 +6,10 @@ $API = new RouterosAPI();
 
 $API->debug = true;
 
-if ($API->connect('10.100.5.1', 'admin', 'aquirre2020.')) {
+if ($API->connect('10.100.5.1', 'admin', 'aquirre2020123')) {
 
    $API->write('/interface/print',false);
-   $API->write('=stats=');
+   $API->write('stats');
  
    $READ = $API->read(false);
    $ARRAY = $API->parseResponse($READ);

@@ -1,14 +1,14 @@
 <?php
 
 require('../routeros_api.class.php');
-
+include('./DatosInicioMikrotik.php');
 $API = new RouterosAPI();
 
 //$API->debug = true;
 
 
 
-if ($API->connect('10.100.5.1', 'admin', 'aquirre2020.')) {
+if ($API->connect($IPRB, $UsuarioEnRB, $ContraseñaEnRB)) {
 
 
   #conseguir cantidad de usuarios  y almacenar en $getusers
@@ -22,10 +22,13 @@ $almacenarperfilesnombres="";
   $userprofile = $API->read();
   for ($i=0; $i < $getuserprofile; $i++) { 
     //print_r($userprofile[$i]['name']." ");
-    $almacenarperfilesnombres = $userprofile[$i]['name'];
+    // $almacenarperfilesnombres = $userprofile[$i]['name'];
+    $json[] = array(
+      'Nombre-perfil'=> $userprofile[$i]['name'],
+    );
   }
 
- 
+  echo json_encode($json,JSON_UNESCAPED_UNICODE);
   $API->disconnect();
   
 }

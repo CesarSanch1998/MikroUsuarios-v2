@@ -8,13 +8,15 @@ $API = new RouterosAPI();
 
 $API->debug = true;
 
-if ($API->connect('10.100.5.1', 'admin', 'aquirre2020.')) {
+if ($API->connect('10.100.5.1', 'admin', 'aquirre2020123.')) {
 
-   $API->comm("/ip/hotspot/user/profile/add", array(
+   $API->comm("/ip/hotspot/user/add", array(
       "name" => "cesaralfonso",
-      
+      "password" => "cesaralfonso",
+      "profile" => "1 SEM",
+      "limit-uptime" => "7d12:00:00",
    ));
-
+   
    $API->disconnect();
 
 }

@@ -8,7 +8,7 @@ $API = new RouterosAPI();
 
 
 
-if ($API->connect('10.100.5.1', 'admin', 'aquirre2020.')) {
+if ($API->connect('10.100.5.1', 'admin', 'aquirre2020123.')) {  //Verifica la conexion con los datos pasados 
 
 
   // get system resource MikroTik
@@ -49,15 +49,23 @@ if ($API->connect('10.100.5.1', 'admin', 'aquirre2020.')) {
   $API->write('/system/health/print');
   $temperatura = $API->read();
 
-  $json = array();
   $json[] = array(
-    'TEncendido' => 'Tiempo'.$resource['uptime'],
+    'TEncendido' => $resource['uptime'],
     'Temperatura' => $temperatura[1]['value'],
     'CPU' => $resource['cpu-load'],
     'NombreMK' => $resource['board-name']
   );
 
-  $json_resultado = json_encode($json);
-  echo $json_resultado;
+  echo json_encode($json, JSON_UNESCAPED_UNICODE);
+  $API->disconnect();
+  
+}else { //SI LA CONEXION CON EL MIKROTIK FALLA SE DEBOLVERAN LOS SIGUIENTES VALORES 
+  $json[] = array(
+    'TEncendido' => 'Sin conexion',
+    'Temperatura' => 'Sin conexion',
+    'CPU' => 'Sin conexion',
+    'NombreMK' => 'Sin conexion'
+  );
+  echo json_encode($json, JSON_UNESCAPED_UNICODE);
   $API->disconnect();
 }

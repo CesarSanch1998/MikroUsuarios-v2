@@ -27,9 +27,9 @@
 
             <ul class="nav nav-pills">
 
-                <li class="nav-item"><a href="../views/Principal.php" class="nav-link" aria-current="page">Principal</a></li>
-                <li class="nav-item"><a href="../views/Activos.php" class="nav-link">Activos</a></li>
-                <li class="nav-item"><a href="../views/Vencidos.php" class="nav-link">Vencidos</a></li>
+                <li class="nav-item"><a href="../views/Principal.html" class="nav-link" aria-current="page">Principal</a></li>
+                <li class="nav-item"><a href="../views/Activos.html" class="nav-link">Activos</a></li>
+                <li class="nav-item"><a href="../views/Vencidos.html" class="nav-link">Vencidos</a></li>
                 <li class="nav-item"><a href="#" class="nav-link active">Deudores</a></li>
                 <li class="nav-item"><a href="#" class="nav-link">Pausados</a></li>
                 <li class="nav-item dropdown">
@@ -50,38 +50,78 @@
     <div class="container">
         <div class="col-12">
             <h2 class="h2 pb-2 mb-5 text-warning border-bottom border-warning">Usuarios Deudores</h2>
-            <table id="TablaDatos" class="table responsive nowrap" style="width:100%" data-page-length='50'>
+            <table id="TablaDeudores" class="table responsive nowrap" style="width:100%" data-page-length='50'>
                 <thead>
                     <tr>
-                        <th>id</th>
                         <th>Nombre</th>
                         <th>Mesa</th>
+                        <th>Fecha Venta</th>
                         <th>Pagado</th>
                         <th>Pendiente</th>
-                        <th>F.Venci</th>
-                        <th>AMK</th>
                         <th>Opciones</th>
                     </tr>
                 </thead>
 
                 <tfoot>
-                    <th>id</th>
-                    <th>F.Venci</th>
-                    <th>F.Venci</th>
-                    <th>F.Venci</th>
-                    <th>F.Venci</th>
-                    <th>Pendiente</th>
-                    <th>AMK</th>
-                    <th>Opciones</th>
+                   
                 </tfoot>
             </table>
         </div>
     </div>
+
+    <!--Modal de abonar pago ---------------------------------->
+<div class="modal fade" id="ModalAbonarPago" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+    <div class="modal-dialog modal-sm modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header" style="background-color: #ffc107  !important;">
+          <h1 class="modal-title fs-5" style="color: #fff;" id="exampleModalLabel">Abonar pago</h1>
+          <button type="button"  class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+  
+          <form id="FormularioAbonarPago" >
+            <div class="row">
+              <div class="col">
+                <input type="text" class="form-control" id="id_tabla_deudores" name="id_tabla_deudores" value="" required hidden>
+                <!-- <input type="text" class="form-control" id="usuario_creados" name="usuario_creados" value="" required hidden>
+                <input type="text" class="form-control" id="nombre" name="nombre" value="" required hidden>
+                <input type="text" class="form-control" id="mesa" name="mesa" value="" required hidden> -->
+                <label for="recipient-name" class="col-form-label fw-semibold">Cantidad:</label>
+                <input type="number" class="form-control" id="monto" name="monto" min="0" step="0.1" required>
+              </div>
+              <div class="col">
+                <p></p>
+                <p></p>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="PDolares" id="pagodolares" required>
+                  <label class="form-check-label" for="flexRadioDefault1">
+                    Dolares ($)
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="PBolivares" id="pagobolivares" required disabled>
+                  <label class="form-check-label" for="flexRadioDefault2">
+                    Bolivares (Bs)
+                  </label>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button"  class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="submit" id="abonar" class="btn btn-success">Abonar Pago</button>
+  
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
     <!--Tabla de usuarios----------------------------------------------------------------->
 
 
     <!--Scripts-------------------------------------------------------------------------->
-
+    <script src="../js/bootstrap.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
@@ -93,66 +133,11 @@
     <!--SweetAlert----------------------------------->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../js/MostrarAlertas.js"></script>
+    <script src="../js/Consultar_TablasDeUsuarios.js"></script>
+    <script src="../js/Botones.js"></script>
 
 
     <!--SweetAlert----------------------------------->
-    <script>
-        $(document).ready(function() {
-            $('#TablaDatos').DataTable({
-                responsive: {
-                    details: {
-                        display: $.fn.dataTable.Responsive.display.modal({
-                            header: function(row) {
-                                var data = row.data();
-                                return 'Detalles de ' + data['nombre'] + ' / Mesa ' + data['mesa'];
-                            }
-                        }),
-                        renderer: $.fn.dataTable.Responsive.renderer.tableAll({
-                            tableClass: 'table'
-                        })
-                    }
-                },
-                ajax: {
-                    url: '/funcionalidad/UsuariosDeudoresMostrar.php',
-                    dataSrc: ''
-                },
-                columns: [{
-                        data: 'usu_creado_id'
-                    }, {
-                        data: 'nombre'
-                    },
-                    {
-                        data: 'mesa'
-                    },
-                    {
-                        data: 'pagado'
-                    },
-                    {
-                        data: 'pendiente'
-                    },
-                    {
-                        data: 'fventa'
-                    },
-                    {
-                        data: function(data, type, JsonResultRow, meta) {
-                            return '<img src="../images/x.png"  width="35" height="35">';
-                        }
-                    },
-                    {
-                        data: "botonAbonar"
-                    }
-                    
-                ],
-                /*
-                columnDefs: [{
-                    target: 0,
-                    visible: false,
-                    searchable: false,
-                }],*/ //esconder id
-            });
-
-        });
-    </script>
     
     <!--Scripts-------------------------------------------------------------------------->
 </body>

@@ -5,7 +5,7 @@ $contraseña="";
 $db="mkdbv2";
 
 
-$conexion = mysqli_connect($server,$usuario,$contraseña,$db);
+$conexion = new PDO('mysql:host='.$server.';dbname='.$db.'', ''.$usuario.'', ''.$contraseña.'');
 
 
 

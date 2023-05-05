@@ -8,13 +8,16 @@ $API = new RouterosAPI();
 
 $API->debug = true;
 
-if ($API->connect('10.100.5.1', 'admin', 'aquirre2020.')) {
+if ($API->connect('10.100.5.1', 'admin', 'aquirre2020123.')) {
 
-   $ARRAY = $API->comm("/ip/hospot/active/print", array(
-      "?user" => "carlos",
-   ));
+   $ARRAY = $API->comm("/ip/hotspot/active/print", array("?user" => "carlos"));
+
    
-   print_r($ARRAY);
+  
+
+   var_dump($ARRAY);
+   
+   
 
    $API->disconnect();
 

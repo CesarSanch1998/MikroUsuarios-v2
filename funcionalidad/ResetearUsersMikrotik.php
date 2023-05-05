@@ -1,31 +1,70 @@
 <?php
 
-    $usuario = $_POST['Usuario'];
+    $usuario = $_POST['usuario'];
+    // $usuario = '4h';
     require('../routeros_api.class.php');
+    include('./DatosInicioMikrotik.php');
 
-    $ejecutado = "";
-    $json ="";
     $API = new RouterosAPI();
-    #$API->debug = true;
-    if ($API->connect('10.100.5.1', 'admin', 'aquirre2020.')) {
-        
-        $ARRAY = $API->comm("/ip/hotspot/user/reset-counters", array(
-            "numbers" => $usuario,
-        ));
-
-        if (empty($ARRAY)) {
-            
-             $json = json_encode($ARRAY);
-             echo "ejecutado";
+    
+  
+    if ($API->connect($IPRB, $UsuarioEnRB, $ContraseñaEnRB)) {
+  
+  
+        $ARRAY = $API->comm("/ip/hotspot/active/print", array("?user" => $usuario));
+    
+        if(!empty($ARRAY)){ // si el $array retorna jun dato es porque esta activo si no pasara al else
+    
+          $json[] = array(
+            'UsuarioMK' => 'Usuario Activo',
+          );
           
-        } else {
+          echo json_encode($json,JSON_UNESCAPED_UNICODE); //Imprime el valor de json para retornar al ajax
+          $API->disconnect(); // finaliza la session de la api
+        }else{
 
-            echo "no ejecutado";
-            $json = json_encode($ARRAY);  
-            
-        }
-
-        $API->disconnect();
+        ResetearUsuarioMK($usuario);
+      }
+      
+    }else {
+    
+        $json[] = array(
+            'UsuarioMK' => 'Sin Conexion',
+          );
+          echo json_encode($json,JSON_UNESCAPED_UNICODE);
+        
     }
+
+
+
+    function ResetearUsuarioMK($usuario){
+        $API = new RouterosAPI();
+        if ($API->connect('10.100.5.1', 'admin', 'aquirre2020123.')) {
+        
+            $ARRAY = $API->comm("/ip/hotspot/user/reset-counters", array(
+                "numbers" => $usuario,
+            ));
+    
+            if (empty($ARRAY)) {
+                
+                 
+              
+                 $json[] = array(
+                    'UsuarioMK' => 'Reseteado',
+                  );
+                  echo json_encode($json,JSON_UNESCAPED_UNICODE);
+            } else {
+    
+                $json[] = array(
+                    'UsuarioMK' => 'No Reseteado',
+                  );
+                  echo json_encode($json,JSON_UNESCAPED_UNICODE);
+                
+            }
+    
+            $API->disconnect();
+        }
+    }
+    
     
 

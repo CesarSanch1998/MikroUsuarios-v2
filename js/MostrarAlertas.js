@@ -54,21 +54,80 @@ function AlertarPausarUsuario() {
         timer: 1500
       })
     }
+    function AlertarEjecutadoError(){
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'Error al Guardar!!',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    }
+    //############# Sweet Alert DEL REINICIO DE LOS USUARIOS ########################################################################################33
     function AlertaUsuarioReiniciadoMikrotik(){
       Swal.fire({
         position: 'center',
         icon: 'success',
-        title: 'Usuario reiniciado en el MIKROTIK con exito!!',
+        title: 'Usuario reiniciado con exito!!',
         showConfirmButton: false,
         timer: 1500
       })
     }
-    function AlertaUsuarioNoReiniciadoMikrotik(){
+    function AlertaUsuarioActivoMikrotik(){
+      Swal.fire({
+        position: 'center',
+        icon: 'info',
+        title: 'Usuario Activo',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    }
+
+    function AlertaSinConexionMikrotik(){
       Swal.fire({
         position: 'center',
         icon: 'error',
-        title: 'Reiniciado Incorrecto',
+        title: 'Error de Conexion Mikrotik',
+        showConfirmButton: true,
+      })
+    }
+
+    function AlertaUsuarioNoColocadoEnTlf(){
+      Swal.fire({
+        position: 'center',
+        icon: 'info',
+        title: 'Usuario no Encontrado!',
         showConfirmButton: false,
         timer: 1500
       })
     }
+
+    function AlertaErrorEnDB(){
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'Error de Conexion Mikrotik',
+        showConfirmButton: true,
+      })
+    }
+//############# Sweet Alert DEL DESCONEXION DE USUARIOS MIKROTIK ########################################################################################33
+function AlertaUsuarioDesconectadoMikrotik(){
+  Swal.fire({
+    position: 'center',
+    icon: 'success',
+    title: 'Usuario Desconectado con exito!!',
+    showConfirmButton: false,
+    timer: 1500
+  })
+}
+//############# ALERTA DE ELIMINAR USUARIO AL CERRAR MODAL DE CREACION DE USUARIO ########################################################################################33
+
+function AlertaEliminarUsuario(){
+  Swal.fire({
+    position: 'center',
+    icon: 'success',
+    title: 'Usuario eliminado con exito!!',
+    showConfirmButton: false,
+    timer: 1500
+  })
+}

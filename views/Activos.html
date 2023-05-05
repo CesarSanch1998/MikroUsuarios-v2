@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.3.0/css/responsive.dataTables.min.css">
+    <link rel="stylesheet" href="../css/bootstrap-datepicker.css">
+    <link href="../css/bootstrap-icons.css" rel="stylesheet">
+    <title>MikroUsuarios</title>
+</head>
+
+<body>
+
+    <!--Cabecera en donde estan las opciones proncipales---------------------------------------->
+    <h1 class="visually-hidden">Headers examples</h1>
+
+    <div class="container">
+        <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+                <span class="fs-4">MikroUsuarios</span>
+            </a>
+
+            <ul class="nav nav-pills">
+
+                <li class="nav-item"><a href="../views/Principal.html" class="nav-link" aria-current="page">Principal</a></li>
+                <li class="nav-item"><a href="#" class="nav-link active">Activos</a></li>
+                <li class="nav-item"><a href="../views/Vencidos.html" class="nav-link">Vencidos</a></li>
+                <li class="nav-item"><a href="../views/Deudores.html" class="nav-link">Deudores</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Pausados</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Historial
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Creados-Registros</a></li>
+                        <li><a class="dropdown-item" href="#">Pagos-Registros</a></li>
+                    </ul>
+                </li>
+        </header>
+    </div>
+    <div class="b-example-divider"></div>
+    <!--Cabecera en donde estan las opciones proncipales---------------------------------------->
+    <!--Boton Agregar usuario---------------------------------------->
+    <div class="container">
+        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#ModalAgregarUsuario">Nuevo Usuario</button>
+        
+    </div>
+
+
+    <!--Boton Agregar usuario---------------------------------------->
+
+    <!--Tabla de usuarios----------------------------------------------------------------->
+    <div class="container">
+        <div class="col-12">
+            <h2 class="h2 pb-2 mb-5 text-success border-bottom border-success">Usuarios Activos</h2>
+            <table id="TablaActivos" class="table table-striped display responsive nowrap" style="width:100%" data-page-length='15'>
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Usuario</th>
+                        <th>Venta</th>
+                        <th>Mesa</th>
+                        <th>Nota</th>
+                        <th>Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            
+            <tfoot>
+            </tfoot>
+            </table>
+        </div>
+    </div>
+    <!--Tabla de usuarios----------------------------------------------------------------->
+    <!-- Modal Usuario Nuevo --------------------- -->
+    <div class="modal fade" id="ModalAgregarUsuario" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header" style="background-color: #198754  !important;">
+              <h1 class="modal-title fs-5" style="color: #fff;" id="exampleModalLabel">Agregar Nuevo Usuario</h1>
+              <button type="button" class="btn-close btnCerrarModalAgregarUsuario"></button>
+            </div>
+            <div class="modal-body">
+              <form id="FormularioAgregarUsuario">
+                <div class="row">
+                  <div class="col-sm-5 col-8">
+                    <input type="text" class="form-control" id="N_id_usuario_creado" name="N_id_usuario_creado" required hidden>
+                    <label for="recipient-name" class="col-form-label fw-semibold">Nombre:</label>
+                    <input type="text" class="form-control" id="N_nombre" name="N_nombre" required minlength="4" maxlength="25">
+                  </div>
+                  <div class="col-sm-3 col-4">
+                    <label for="recipient-name" class="col-form-label fw-semibold" id="MensajeAyuda">Mesa:</label>
+                    <input type="number" class="form-control" id="N_mesa" name="N_mesa" min="0" max="412" step="1" required>
+                  </div>
+                  <div class="col-sm-4 col-6">
+                    <label for="recipient-name" class="col-form-label fw-semibold">Tipo:</label>
+                    <select class="form-select" id="N_perfiltiempo" name="N_perfiltiempo" required>
+                      <option selected>Elegir</option>
+                      <option value="1s">1 Semana</option>
+                      <option value="1m">1 Mes</option>
+      
+                    </select>
+                  </div>
+                
+               
+                  <div class="col-sm-3 col-3">
+                    <label for="recipient-name" class="col-form-label fw-semibold">Usuario:</label>
+                    <input type="text" class="form-control" name="N_usuario" id="N_usuario" required minlength="2" maxlength="8" readonly> 
+                  </div>
+                  <div class="col-sm-3 col-3">
+                    <label for="recipient-name" class="col-form-label fw-semibold">Contraseña:</label>
+                    <input type="text" class="form-control" name="N_contra" id="N_contra" required minlength="2" maxlength="8" readonly>
+                  </div>
+      
+                  <div class="col-sm-6 col-12">
+                    <label for="recipient-name" class="col-form-label fw-semibold">Venta y Vencimiento</label>
+                    <div class="input-daterange input-group" name="DPAgregarUsuario" required>
+                      <input type="text" class="input-sm form-control" id="N_inicio" name="N_inicio" name="start" />
+                      <span class="input-group-addon">-</span>
+                      <input type="text" class="input-sm form-control" id="N_final" name="N_final" name="end" />
+                    </div>
+                  </div>
+                </div>
+                
+      
+                <div class="mb-3">
+                  <label for="message-text" class="col-form-label">Nota:</label>
+                  <textarea class="form-control" name="N_nota" id="N_nota" required  maxlength="50"></textarea>
+                </div>
+      
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary btnCerrarModalAgregarUsuario">Cerrar</button>
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#GenerarUsuarioAleatorio">Generar Usuario</button>
+              <button type="submit" class="btn btn-success">Guardar Suscripcion</button>
+      
+            </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      
+      
+      <!--Modal de crear usuario nuevo aleatorio ---------------------------------->
+      <div class="modal fade" id="GenerarUsuarioAleatorio" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+        <div class="modal-dialog modal-sm modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header" style="background-color: #0d6efd  !important;">
+              <h1 class="modal-title fs-5" style="color: #fff;" id="exampleModalLabel">Generar Usuario Aleatorio</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form id="FormularioCrearUsuarioAleatorio">
+                <div class="row">
+                  <div class="col-6">
+                    <label for="recipient-name" class="col-form-label fw-semibold">Longitud:</label>
+                  <select class="form-select" id="longituddatos" required>
+                    <option disabled selected hidden>Caracteres</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                  </select>
+                  </div>
+                  <div class="col-6">
+                    <label for="recipient-name" class="col-form-label fw-semibold">Formato:</label>
+                    <select class="form-select" id="formatodatos" required>
+                      <option disabled selected hidden>Formato</option>
+                      <option value="ab">abcde</option>
+                      <option value="ABC">ABCDE</option>
+                      <option value="a1">a1b2c3</option>
+                      <option value="12">12345</option>
+                    </select>
+                  </div>
+                  
+                </div>
+                <div class="row">
+                  <label for="recipient-name" class="col-form-label fw-semibold">Limite de Tiempo:</label>
+                  <div class="input-group mb-3">
+                    <input type="number" class="form-control" id="TiempoDias" placeholder="Dias" min="0" max="31" step="1">
+                    <span class="input-group-text">/</span>
+                    <input type="number" class="form-control" id="TiempoHoras" placeholder="Horas" min="0" max="23" step="1" required>
+                  </div>
+                </div>
+                <div class="row">
+                  <label for="recipient-name" class="col-form-label fw-semibold">Perfil de Tiempo:</label>
+                  <select class="form-select" id="perfiltiempo" required>
+                    <option disabled selected hidden>Elige el perfil..</option>
+                    <!--Obtener Perfil de tiempo del mikrotik y mostralo en el select-->
+      
+                  </select>
+                </div>
+                <div class="row">
+                  <label for="recipient-name" class="col-form-label fw-semibold">Tipo de Usuario:</label>
+                  <select class="form-select" id="TipoUsuario" required>
+                    <option disabled selected hidden>Elige el Tiempo..</option>
+                    <option value="1d">1 Dia</option>
+                      <option value="1s">1 Semana</option>
+                      <option value="1m">1 Mes</option>
+      
+                  </select>
+                </div>
+              
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-secondary" data-bs-target="#ModalAgregarUsuario" data-bs-toggle="modal">Regresar</button>
+              <button type="submit" class="btn btn-success btnGenerarAleatorio">Generar</button>
+      
+            </div>
+          </form>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+    <!--Scripts-------------------------------------------------------------------------->
+    <script src="../js/bootstrap.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
+    <script src="../js/bootstrap-datepicker.min.js"></script>
+    <script src="../js/Consultar_TablasDeUsuarios.js"></script>
+    <script src="../js/Botones.js"></script>
+    <!--SweetAlert----------------------------------->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../js/MostrarAlertas.js"></script>
+    <!--SweetAlert----------------------------------->
+
+    <!--Script Modal AgregarUsuario---------------------------------------------------->
+    <!-- <script>
+        const exampleModal = document.getElementById('ModalAgregarUsuario')
+        exampleModal.addEventListener('show.bs.modal', event => {})
+    </script> -->
+    <!--Script Modal AgregarUsuario---------------------------------------------------->
+    <!--Script TABLA---------------------------------------------------->
+    <script>
+        // $(document).ready(function(){
+        //     CargarUsuariosActivos();
+        // });
+    </script>
+    <!--Script TABLA---------------------------------------------------->
+    <!--Script selector de fecha modal----------------------------------------------------->
+    <script>
+        $('.input-daterange').datepicker({
+            format: "yyyy-mm-dd",
+            language: "es",
+            orientation: "bottom auto",
+            startDate: "2022-07-01",
+            todayBtn: "linked",
+            orientation: "bottom auto"
+        });
+    </script>
+    <!--Script selector de fecha modal----------------------------------------------------->
+    <!--Script selector perfil de tiempo del mikrotik----------------------------------------------------->
+    <script>
+      $(document).ready(function () {
+  $.ajax({
+    url: "../funcionalidad/PerfildeTiempoMikrotik.php",
+    type: "GET",
+    success: function (respuesta) {
+      let json = JSON.parse(respuesta);
+      var len = json.length;
+
+      // $("#selectraza").empty();
+      for (var i = 0; i < len; i++) {
+        var nombre_perfil = json[i]["Nombre-perfil"];
+
+        $("#perfiltiempo").append(
+          "<option value=''>" + nombre_perfil+ "</option>"
+        );
+      }
+    },
+  });
+});
+    </script>
+    <!--Script selector perfil de tiempo del mikrotik----------------------------------------------------->
+    <!--Scripts-------------------------------------------------------------------------->
+</body>
+
+</html>
