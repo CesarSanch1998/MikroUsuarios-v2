@@ -1,6 +1,6 @@
 <?php 
 
-function EliminarRegistroUsuarioTablaVencidos($id_Usuario){
+function EliminarRegistroUsuarioTablaVencidos($id_Usuario_Vencido){
     include('../DB/Conexion.php');
     
     $sql = "DELETE FROM maquinaria WHERE ID_maquinaria = $id_Maquinaria";

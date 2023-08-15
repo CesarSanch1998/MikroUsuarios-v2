@@ -12,14 +12,14 @@ $resultado->execute();
 // $datos=$resultado->fetch(PDO::FETCH_ASSOC);
 
 
-  while($datos = $resultado->fetch()){
+ $datos = $resultado->fetch();
   
     $usuario = $datos['Usuario'];
     $nombrecliente = $datos['Nombre_Cliente'];
     $mesa = $datos['Mesa'];
     InformacionMK($usuario,$nombrecliente,$mesa);
   
-}
+
 
 
 function InformacionMK($usuariomk,$nombrecliente,$mesa){

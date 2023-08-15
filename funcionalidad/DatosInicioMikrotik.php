@@ -1,6 +1,6 @@
 <?php 
-$IPRB = '10.100.5.1';
+$IPRB = '10.100.4.1';
 $UsuarioEnRB = 'admin';
-$ContraseñaEnRB = 'aquirre2020123.';
+$ContraseñaEnRB = 'admin';
 
 ?>

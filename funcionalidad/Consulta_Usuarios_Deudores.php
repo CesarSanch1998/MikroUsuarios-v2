@@ -18,11 +18,11 @@ while ($Datos_deudores = $resultado->fetch()) {
         'Fecha_Venta' => $Datos_deudores['Fecha_Venta'],
         'fvenci' => $Datos_deudores['Fecha_Vencimiento'],
         'usu_creado_id' => $Datos_deudores['Usuarios_Creados_id'],
-        'BotonAbonar' => '<div class="btn-group" role="group" aria-label="Basic mixed styles example">
+        'BotonAbonar' => '
         <button type="button" name="Abonar" id="'.$Datos_deudores['id'].'" class="btn btn-warning btnAbonarPago">Abonar</button>
-        <button type="button" name="borrar" id="'.$Datos_deudores['id'].'" class="btn btn-danger">Borrar</button>
+        <button type="button" class="btn btn-danger btnEliminarDeudores" name="borrar" id="'.$Datos_deudores['id'].'"">Borrar</button>
 
-        </div>'
+        '
       );
 }
 

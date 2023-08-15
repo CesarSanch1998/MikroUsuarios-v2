@@ -1,7 +1,7 @@
 <?php 
 
 
-
+include('./DatosInicioMikrotik.php');
 $nombre = $_POST['N_nombre'];
 $mesa = $_POST['N_mesa'];
 $Tipo = $_POST['N_perfiltiempo'];
@@ -18,7 +18,7 @@ require('../routeros_api.class.php');
     $API = new RouterosAPI();
     
   
-    if ($API->connect('10.100.5.1', 'admin', 'aquirre2020123.')) {
+    if ($API->connect($IPRB, $UsuarioEnRB, $ContraseñaEnRB)) {
   
   
         $ARRAY = $API->comm("/ip/hotspot/active/print", array("?user" => $usuario));

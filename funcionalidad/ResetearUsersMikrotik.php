@@ -39,7 +39,8 @@
 
     function ResetearUsuarioMK($usuario){
         $API = new RouterosAPI();
-        if ($API->connect('10.100.5.1', 'admin', 'aquirre2020123.')) {
+        include('./DatosInicioMikrotik.php');
+        if ($API->connect($IPRB, $UsuarioEnRB, $ContraseñaEnRB)) {
         
             $ARRAY = $API->comm("/ip/hotspot/user/reset-counters", array(
                 "numbers" => $usuario,

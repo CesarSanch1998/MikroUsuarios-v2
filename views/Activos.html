@@ -63,6 +63,8 @@
                         <th>Nombre</th>
                         <th>Usuario</th>
                         <th>Venta</th>
+                        <th>Contraseña</th>
+                        <th>Vencimiento</th>
                         <th>Mesa</th>
                         <th>Nota</th>
                         <th>Opciones</th>
@@ -101,6 +103,7 @@
                     <label for="recipient-name" class="col-form-label fw-semibold">Tipo:</label>
                     <select class="form-select" id="N_perfiltiempo" name="N_perfiltiempo" required>
                       <option selected>Elegir</option>
+                      <option value="1d">1 Dia</option>
                       <option value="1s">1 Semana</option>
                       <option value="1m">1 Mes</option>
       
@@ -218,6 +221,85 @@
         </div>
       </div>
 
+ <!-- MODAL INFORMACION ADICIONAL Activos------------------------- -->
+ <div class="modal fade" id="ModalInformacionAdicionalActivos" data-bs-backdrop="static" data-bs-keyboard="false"
+ tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+ <div class="modal-dialog modal-dialog-centered">
+     <div class="modal-content">
+         <div class="modal-header">
+             <h1 class="modal-title fs-5" id="Titulo">Informacion Adicional</h1>
+
+             <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close">
+                 <p style="font-size: 1.5em; color:red"><i class="bi bi-x-circle"></i>
+             </button>
+         </div>
+         <div class="modal-body">
+             <form id="FormularioRegistrosGrandes">
+                 <div class="row">
+                     <div class="col-sm-5 col-8">
+                         <input type="text" class="form-control" id="id" name="id" value="" required hidden>
+                         <label for="recipient-name" class="col-form-label fw-semibold">Nombre:</label>
+                         <input type="text" class="form-control" id="IA_nombre" name="IA_nombre" value=""
+                             required minlength="4" maxlength="25" readonly>
+                     </div>
+                     <div class="col-sm-3 col-4">
+                         <label for="recipient-name" class="col-form-label fw-semibold"
+                             id="MensajeAyuda">Mesa:</label>
+                         <input type="number" class="form-control" id="IA_mesa" name="IA_mesa" value="" min="0"
+                             max="412" step="1" required readonly>
+                     </div>
+                     <div class="col-sm-4 col-6">
+                         <label for="recipient-name" class="col-form-label fw-semibold">Tipo:</label>
+                         <select class="form-select" id="IA_tipo" name="IA_tipo" required readonly>
+                             <option value="1d"> 1 Dia </option>
+                             <option value="1s"> 1 Semana </option>
+                             <option value="1m"> 1 Mes </option>
+
+                         </select>
+                     </div>
+                     <div class="col-sm-5 col-6">
+                         <label for="recipient-name" class="col-form-label fw-semibold">MAC:</label>
+                         <input type="text" class="form-control" id="IA_mac" name="IA_mac" minlength="2"
+                             maxlength="25" readonly>
+                     </div>
+                     <div class="col-sm-4 col-6">
+                         <label for="recipient-name" class="col-form-label fw-semibold">Direccion IP:</label>
+                         <input type="text" class="form-control" id="IA_ip" name="IA_ip" value="" required
+                             minlength="2" maxlength="15" readonly>
+                     </div>
+                     <div class="col-sm-3 col-6">
+                         <label for="recipient-name" class="col-form-label fw-semibold">T. Restante:</label>
+                         <input type="text" class="form-control" id="IA_stl" name="IA_stl" value="" required
+                             minlength="0" maxlength="10" readonly>
+                     </div>
+                     <div class="col-sm-3 col-6">
+                         <label for="recipient-name" class="col-form-label fw-semibold">Estatus MK:</label>
+                         <h4 id="icono"></h4>
+                         <!-- <h4><i class="bi bi-check-circle" style="font-size: 2em; color: green;"></i></h4>
+                    <h4><i class="bi bi-x-circle" style="font-size: 2em; color: red;"></i></h4> -->
+                     </div>
+                     <div class="col-sm-3 col-6">
+                         <label for="recipient-name" class="col-form-label fw-semibold">T. Inactivo:</label>
+                         <input type="text" class="form-control" id="IA_tit" name="IA_tit" value="" required
+                             minlength="0" maxlength="10" readonly>
+                     </div>
+                     <div class="col-sm-3 col-6">
+                         <label for="recipient-name" class="col-form-label fw-semibold">Usuario:</label>
+                         <input type="text" class="form-control" id="IA_usuario" name="IA_usuario" value="" required
+                             minlength="0" maxlength="10" readonly>
+                     </div>
+                 </div>
+         </div>
+         <div class="modal-footer">
+
+             <button type="button" class="btn btn-danger btnDesconectarUsuarioMK"><i class="bi bi-1-circle"></i> Desconectar</button>
+         </div>
+
+         </form>
+     </div>
+ </div>
+</div>
+<!-- Fin MODAL INFORMACION ADICIONAL Activos---------------------- -->
 
 
 

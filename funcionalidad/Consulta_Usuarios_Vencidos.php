@@ -17,13 +17,12 @@ $resultado->execute();
       'Mesa' => $datos['Mesa'],
       'Fecha_Venta' => $datos['Fecha_Venta'],
       'Fecha_Vencimiento' => $datos['Fecha_Vencimiento'],
-      'Estatus_Mikrotik' => $datos['Estatus_Mikrotik'],
       'Nota' => $datos['Nota'],
       'Usuario' => $datos['Usuario'],
       'Opciones'=>'
       <button type="button" class="btn btn-warning btnResuscribir" name="btnResuscribir" id="'.$datos['id'].'" ><i class="bi bi-arrow-counterclockwise"></i></button>
       <button type="button" class="btn btn-info btnInformacion" name="btnInformacion" id="'.$datos['id'].'" ><i class="bi bi-list-ul"></i></button>
-      <button type="button" class="btn btn-danger btnEliminar" name="borrar" id="'.$datos['id'].'"><i class="bi bi-trash3"></i></button>'
+      <button type="button" class="btn btn-danger btnEliminarVencidos" name="borrar" id="'.$datos['id'].'"><i class="bi bi-trash3"></i></button>'
       
     );
   

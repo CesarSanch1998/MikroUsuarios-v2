@@ -17,28 +17,66 @@
 
                 <div class="card my-5">
 
-                    <form class="card-body cardbody-color p-lg-5">
+                    <form id="FormularioIniciarSeccion" class="card-body cardbody-color p-lg-5">
 
                         <div class="text-center">
                             <img src="https://cdn.pixabay.com/photo/2017/03/21/02/00/user-2160923_960_720.png" class="img-fluid profile-image-pic img-thumbnail rounded-circle my-3" width="200px" alt="profile">
                         </div>
 
                         <div class="mb-3">
-                            <input type="text" class="form-control" id="Username" aria-describedby="emailHelp" placeholder="Usuario">
+                            <input type="text" class="form-control" id="Usuario_InicioSeccion" aria-describedby="emailHelp" placeholder="Usuario" required>
                         </div>
                         <div class="mb-3">
-                            <input type="password" class="form-control" id="password" placeholder="Contraseña">
+                            <input type="password" class="form-control" id="Contraseña_InicioSeccion" placeholder="Contraseña" required>
                         </div>
                         <div class="text-center"><button type="submit" class="btn btn-success px-5 mb-5 w-100">Login</button></div>
                         
-                    </form>
-                    <button type="button" class="btn btn-success"><a href="/views/verificarmikrotik.php" class="nav-link">Probar</a></button>
+                    
+                    <button type="button" class="btn btn-success .btniniciarseccion"><a href="/views/verificarmikrotik.php" class="nav-link">Probar Conexion Mk</a></button>
                 </div>
-
+            </form>
             </div>
         </div>
     </div>
     <script src="./js/bootstrap.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script>
+$("#FormularioIniciarSeccion").submit(function (e) {
+e.preventDefault();
+  const Datos = {
+    IS_Usuario: $("#Usuario_InicioSeccion").val(),
+    IS_Contraseña: $("#Contraseña_InicioSeccion").val(),
+  };
+
+  $.post(
+    "funcionalidad/Iniciar_Seccion.php",
+    Datos,
+    function (respuesta) {
+
+        let json = JSON.parse(respuesta); //Almacena el resultado del json en el let json
+      json.forEach((json) => {
+        //Se asignan los valores obtendios en json a su respectivo input
+
+        switch (json.Error) {
+          case "0": //Se inicia Seccion
+          sessionStorage.setItem("Usuario", json.Usuario);
+          sessionStorage.setItem("Privilegios", json.Privilegios);
+          location.href ='views/Principal.html';
+            break;
+
+          case "1"://No se inicia Seccion
+            
+            break;
+        }
+      });
+
+  });
+
+  document.getElementById("FormularioIniciarSeccion").reset();
+
+});
+    </script>
+
 </body>
 
 </html>

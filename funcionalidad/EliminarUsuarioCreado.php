@@ -1,5 +1,6 @@
 <?php 
 include('../DB/Conexion.php');
+include('./DatosInicioMikrotik.php');
 
 $Id_Usuario_CreadoDB = $_POST['id_UsuarioCreado'];
 $Usuario_Creado = $_POST['N_usuario'];
@@ -20,7 +21,7 @@ function EliminarUsuarioCreadoMK($usuario){
 
 $API = new RouterosAPI();
 
-if ($API->connect('10.100.5.1', 'admin', 'aquirre2020123.')) {
+if ($API->connect($IPRB, $UsuarioEnRB, $ContraseñaEnRB)) {
 
    $API->comm("/ip/hotspot/user/remove", array(
       "numbers"     => $usuario,

@@ -120,11 +120,11 @@ function AgregarUsuarioMK($Usuario,$Contraseña,$Tipo,$TiempoTotal){
   
 
   require('../routeros_api.class.php');
-
+  include('./DatosInicioMikrotik.php');
   $API = new RouterosAPI();
   
   
-  if ($API->connect('10.100.5.1', 'admin', 'aquirre2020123.')) {
+  if ($API->connect($IPRB, $UsuarioEnRB, $ContraseñaEnRB)) {
   
      $API->comm("/ip/hotspot/user/add", array(
         "name" => $Usuario,

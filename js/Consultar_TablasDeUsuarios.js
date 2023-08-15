@@ -1,6 +1,7 @@
 $(document).ready(function () {
 // TABLA DE USUARIOS ACTIVOS ---------------------------------------
     var Tabla = $('#TablaActivos').DataTable({
+        order: [[2, 'desc']],
         ajax: {
             url: '../funcionalidad/Consulta_Usuarios_Activos.php',
             dataSrc: '',
@@ -12,8 +13,10 @@ $(document).ready(function () {
             { width: "10%", targets: 1 }, //Mesa
             { width: "10%", targets: 2 }, //Usuario
             { width: "10%", targets: 3 }, //F.Venta
-            { width: "45%", targets: 4 }, //Nota
-            { width: "10%", targets: 5 }  //Opciones
+            { width: "10%", targets: 4 }, //Contraseña
+            { width: "10%", targets: 5 }, //F.Vencimiento
+            { width: "45%", targets: 6 }, //Nota
+            { width: "10%", targets: 7 }  //Opciones
           ],
         columns: [
             {
@@ -24,6 +27,12 @@ $(document).ready(function () {
             },
             {
                 data: 'Fecha_Venta'
+            },
+            {
+                data: 'Contraseña'
+            },
+            {
+                data: 'Fecha_Vencimiento'
             },
             {
                 data: 'Mesa'
@@ -46,6 +55,7 @@ $(document).ready(function () {
 
     // TABLA USUARIOS VENCIDOS ----------------------------------------------------------
     var Tabla = $('#TablaVencidos').DataTable({
+        order: [[2, 'desc']],
         ajax: {
             url: '../funcionalidad/Consulta_Usuarios_Vencidos.php',
             dataSrc: '',
@@ -56,6 +66,7 @@ $(document).ready(function () {
             { width: "15%", targets: 0 }, //Nombre
             { width: "10%", targets: 1 }, //Mesa
             { width: "10%", targets: 2 }, //Usuario
+            { width: "10%", targets: 2 }, //F.Vencimiento
             { width: "10%", targets: 3 }, //F.Venta
             { width: "45%", targets: 4 }, //Nota
             { width: "10%", targets: 5 }  //Opciones
@@ -66,6 +77,9 @@ $(document).ready(function () {
             },
             {
                 data: 'Usuario'
+            },
+            {
+                data: 'Fecha_Vencimiento'
             },
             {
                 data: 'Fecha_Venta'

@@ -1,6 +1,6 @@
 <?php 
 
-
+include('./DatosInicioMikrotik.php');
 $id = $_POST['RS_id'];//id obtenido de la tabla de vencidos
 $nombre = $_POST['RS_nombre_cliente'];
 $mesa = $_POST['RS_mesa'];
@@ -18,7 +18,7 @@ require('../routeros_api.class.php');
     $API = new RouterosAPI();
     
   
-    if ($API->connect('10.100.5.1', 'admin', 'aquirre2020123.')) {
+    if ($API->connect($IPRB, $UsuarioEnRB, $ContraseñaEnRB)) {
   
   
         $ARRAY = $API->comm("/ip/hotspot/active/print", array("?user" => $usuario));
