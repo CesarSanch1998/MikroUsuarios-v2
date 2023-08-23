@@ -504,6 +504,7 @@ $(document).on("click", ".btnEliminarVencidos", function () {
             $("#Inventario_Rebaño").DataTable().ajax.reload();
           } else {
             Swal.fire("ERROR!", "El registro no se elimino.", "error");
+            console.log(respuesta)
           }
         });
       }
@@ -525,7 +526,7 @@ $(document).on("click", ".btnEliminarActivos", function () {
     if (result.isConfirmed) {
 
       const Datos = {
-          id_Usuario_Vencido: this.id,
+          id_Usuario_Activos: this.id,
       };
 
       $.post('../funcionalidad/BotonBorrar.php', Datos, function (respuesta) {
@@ -547,7 +548,43 @@ $(document).on("click", ".btnEliminarActivos", function () {
     }
   });
 });
+// BOTON ELIMINAR REGISTROS DEUDORES-------------------------------------
+$(document).on("click", ".btnEliminarDeudores", function () {
+  Swal.fire({
+    title: "Estas Seguro?",
+    text: "Estas a punto de eliminar este registro?!",
+    icon: "error",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Si, Eliminar",
+    cancelButtonText: "Cancelar",
+  }).then((result) => {
+    if (result.isConfirmed) {
 
+      const Datos = {
+          id_Usuario_Deudores: this.id,
+      };
+
+      $.post('../funcionalidad/BotonBorrar.php', Datos, function (respuesta) {
+        // metodo post del query igualmente funcional que el anterior
+        console.log(respuesta);
+
+        if (respuesta == "Ejecutado") {
+          Swal.fire(
+            "Eliminado!",
+            "El registro fue eliminado por completo.",
+            "success"
+          );
+          // Busca la tabla Inventario Rebaño y la recarga
+          $("#Inventario_Rebaño").DataTable().ajax.reload();
+        } else {
+          Swal.fire("ERROR!", "El registro no se elimino.", "error");
+        }
+      });
+    }
+  });
+});
 
 // ##############################################################################################################################3
 // BOTON INFORMACION ADICIONAL DE LA TABLA ACTIVOSSS --------------------------------------------

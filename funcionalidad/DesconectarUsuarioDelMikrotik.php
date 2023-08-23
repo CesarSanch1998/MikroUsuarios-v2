@@ -56,5 +56,72 @@
         
     }
 
+
+// LLAMADA A DESCONECTAR 
+    function DesconectarMK($usuariomk){
+       // $usuario = '4h';
+    require('../routeros_api.class.php');
+    include('./DatosInicioMikrotik.php');
+
+    $API = new RouterosAPI();
+    
+  
+    if ($API->connect($IPRB, $UsuarioEnRB, $ContraseñaEnRB)) {
+  
+  
+        $ARRAY = $API->comm("/ip/hotspot/active/print", array("?user" => $usuariomk));
+    
+        if(!empty($ARRAY)){ // si el $array retorna jun dato es porque esta activo si no pasara al else
+          
+          $id_numbers_mk = $ARRAY[0]['.id'];
+          $ARRAY2 = $API->comm("/ip/hotspot/active/remove", array("numbers" => $id_numbers_mk));
+    
+          if(empty($ARRAY2)){ // si el $array retorna jun dato es porque esta activo si no pasara al else
+      
+            $json[] = array(
+              'UsuarioMK' => 'Usuario Desconectado',
+            );
+            
+          $API->disconnect(); // finaliza la session de la api
+          $respuesta = json_encode($json,JSON_UNESCAPED_UNICODE);
+          echo $respuesta;
+          return $json; //Imprime el valor de json para retornar al ajax
+
+          }else{
+  
+            $json[] = array(
+              'UsuarioMK' => 'Usuario No Desconectado',
+            );
+            
+            $API->disconnect(); // finaliza la session de la api
+            $respuesta = json_encode($json,JSON_UNESCAPED_UNICODE);
+            echo $respuesta;
+            return $json; //Imprime el valor de json para retornar al ajax
+        }
+        // DesconectarUsuarioMk($ARRAY[0]['.id']);
+        
+        }else{
+
+          $json[] = array(
+            'UsuarioMK' => 'Usuario No Encontrado',
+          );
+          $API->disconnect(); // finaliza la session de la api
+          $respuesta = json_encode($json,JSON_UNESCAPED_UNICODE);
+          echo $respuesta;
+          return $json; //Imprime el valor de json para retornar al ajax
+          
+      }
+      
+    }else {
+    
+        $json[] = array(
+            'UsuarioMK' => 'Sin Conexion',
+          );
+          $respuesta = json_encode($json,JSON_UNESCAPED_UNICODE);
+          echo $respuesta;
+          return $json;
+        
+    }
+    }
     
 ?>

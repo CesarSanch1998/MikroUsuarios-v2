@@ -51,7 +51,7 @@ if ($API->connect($IPRB, $UsuarioEnRB, $ContraseñaEnRB)) {  //Verifica la conex
 
   $json[] = array(
     'TEncendido' => $resource['uptime'],
-    'Temperatura' => $temperatura[1]['value'],
+    'Temperatura' => "Sin Datos",//
     'CPU' => $resource['cpu-load'],
     'NombreMK' => $resource['board-name']
   );

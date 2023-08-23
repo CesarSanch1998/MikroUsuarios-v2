@@ -20,7 +20,7 @@ while ($Datos_deudores = $resultado->fetch()) {
         'usu_creado_id' => $Datos_deudores['Usuarios_Creados_id'],
         'BotonAbonar' => '
         <button type="button" name="Abonar" id="'.$Datos_deudores['id'].'" class="btn btn-warning btnAbonarPago">Abonar</button>
-        <button type="button" class="btn btn-danger btnEliminarDeudores" name="borrar" id="'.$Datos_deudores['id'].'"">Borrar</button>
+        <button type="button" id="'.$Datos_deudores['id'].'" class="btn btn-danger btnEliminarDeudores" name="borrar" id="'.$Datos_deudores['id'].'"">Borrar</button>
 
         '
       );
